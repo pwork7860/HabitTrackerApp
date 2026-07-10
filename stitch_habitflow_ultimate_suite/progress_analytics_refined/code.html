@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Progress Analytics - HabitForge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "secondary": "#0058be",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary": "#855300",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-container": "#00422b",
+                        "outline-variant": "#bbcabf",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-fixed": "#002113",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-primary": "#4edea3",
+                        "on-secondary-fixed": "#001a42",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary-container": "#e29100",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-container": "#2170e4",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-surface": "#213145",
+                        "surface-tint": "#006c49",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "primary-container": "#10b981",
+                        "surface-container": "#e5eeff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed": "#6ffbbe",
+                        "on-surface-variant": "#3c4a42",
+                        "outline": "#6c7a71",
+                        "on-tertiary-container": "#523200",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "primary": "#006c49",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-surface": "#0b1c30",
+                        "background": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "12px",
+                        "container-padding-mobile": "16px",
+                        "section-gap": "32px",
+                        "container-padding-desktop": "32px",
+                        "gutter": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soft-shadow {
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.04);
+        }
+        .data-shadow {
+            box-shadow: 0px 8px 16px -4px rgba(16, 185, 129, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-50 bg-surface/90 backdrop-blur-md shadow-sm flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop py-4 border-b border-surface-container">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high shrink-0 ring-2 ring-surface-container">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A close-up, brightly lit portrait of a professional looking individual smiling warmly. The photo is high quality, sharp, and uses a clean, modern aesthetic suitable for an app profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgUWnZrErLmHw1EfHltg21Ssq8ICsfzhYE8Nw-dCWgA-tEdDYGFqmPy6qIT8Nm_015zka9Y93wRXKdcOib5_14oAZVQds8Ck0lPW_L6RFkLb7ucpPfGdyNJOeSzVNIC11EwWklKyUzjusiDaTp1RqL_kM54qi_7buJwN57vWm6i5awBJG-1zNiaFD-liw-qQ2yqO3kWtv9xHdpmKEZ67zykM23PTLK6hBGrpGY9vrbhbXPPey-4u8nqYavW0ZidY5XF5UYI1V2036B"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">HabitForge</h1>
+</div>
+<button aria-label="Settings" class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow p-container-padding-mobile md:p-container-padding-desktop pb-[100px] md:pb-container-padding-desktop max-w-7xl mx-auto w-full flex flex-col gap-section-gap">
+<header class="pt-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Your Progress</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">A high-level overview of your journey.</p>
+</header>
+<!-- Top Level Stats Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-card-gap md:gap-gutter">
+<!-- Total Habits -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 soft-shadow flex flex-col justify-between h-40 border border-surface-container/50">
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-medium text-on-surface-variant uppercase tracking-wider">Total Completed</span>
+<span class="material-symbols-outlined text-primary-container bg-primary-container/10 p-1.5 rounded-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">1,248</div>
+<div class="font-body-sm text-body-sm text-primary font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+12% this month</span>
+</div>
+</div>
+</div>
+<!-- Longest Streak -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 soft-shadow flex flex-col justify-between h-40 border border-surface-container/50">
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-medium text-on-surface-variant uppercase tracking-wider">Longest Streak</span>
+<span class="material-symbols-outlined text-tertiary-container bg-tertiary-container/10 p-1.5 rounded-lg" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">42 <span class="font-headline-md text-headline-md text-on-surface-variant font-normal">Days</span></div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Meditation</div>
+</div>
+</div>
+<!-- Consistency Score -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 soft-shadow flex flex-col justify-between h-40 border border-surface-container/50 relative overflow-hidden">
+<div class="absolute right-0 bottom-0 w-24 h-24 bg-primary/5 rounded-tl-[100px] -z-10"></div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm font-medium text-on-surface-variant uppercase tracking-wider">Consistency Score</span>
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-1.5 rounded-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary">94%</div>
+<div class="font-body-sm text-body-sm text-secondary font-medium mt-1">Top 5% of users</div>
+</div>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-section-gap md:gap-gutter">
+<!-- Radar Chart Area -->
+<div class="lg:col-span-1 bg-surface-container-lowest rounded-2xl p-6 soft-shadow flex flex-col items-center border border-surface-container/50">
+<h3 class="font-headline-md text-headline-md text-on-surface self-start w-full mb-6">Habit Balance</h3>
+<div class="relative w-full aspect-square max-w-[280px] flex items-center justify-center">
+<!-- Placeholder for Radar Chart Graphic -->
+<div class="absolute inset-0 bg-transparent rounded-full border border-outline-variant/30"></div>
+<div class="absolute inset-6 bg-transparent rounded-full border border-outline-variant/30"></div>
+<div class="absolute inset-12 bg-transparent rounded-full border border-outline-variant/30"></div>
+<!-- Axes -->
+<div class="absolute w-full h-[1px] bg-outline-variant/20 rotate-0"></div>
+<div class="absolute w-full h-[1px] bg-outline-variant/20 rotate-60"></div>
+<div class="absolute w-full h-[1px] bg-outline-variant/20 rotate-120"></div>
+<!-- Shape -->
+<svg class="absolute w-full h-full z-10" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="radar-gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#10b981" stop-opacity="0.05"></stop>
+</lineargradient>
+</defs>
+<polygon fill="url(#radar-gradient)" points="50,15 85,35 70,80 30,75 15,40" stroke="#10b981" stroke-linejoin="round" stroke-width="2.5"></polygon>
+<circle cx="50" cy="15" fill="#ffffff" r="3.5" stroke="#10b981" stroke-width="2"></circle>
+<circle cx="85" cy="35" fill="#ffffff" r="3.5" stroke="#10b981" stroke-width="2"></circle>
+<circle cx="70" cy="80" fill="#ffffff" r="3.5" stroke="#10b981" stroke-width="2"></circle>
+<circle cx="30" cy="75" fill="#ffffff" r="3.5" stroke="#10b981" stroke-width="2"></circle>
+<circle cx="15" cy="40" fill="#ffffff" r="3.5" stroke="#10b981" stroke-width="2"></circle>
+</svg>
+<!-- Labels -->
+<span class="absolute top-[-24px] font-label-md text-label-md text-on-surface-variant">Health</span>
+<span class="absolute right-[-32px] top-[30%] font-label-md text-label-md text-on-surface-variant">Work</span>
+<span class="absolute right-[-16px] bottom-[-16px] font-label-md text-label-md text-on-surface-variant">Finance</span>
+<span class="absolute left-[-24px] bottom-[-16px] font-label-md text-label-md text-on-surface-variant">Social</span>
+<span class="absolute left-[-36px] top-[30%] font-label-md text-label-md text-on-surface-variant">Mindset</span>
+</div>
+</div>
+<!-- Trend Line Chart -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-2xl p-6 soft-shadow flex flex-col border border-surface-container/50">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Monthly Trends</h3>
+<select class="bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm rounded-lg text-on-surface-variant focus:ring-primary py-1.5 pl-3 pr-8 focus:border-primary outline-none">
+<option>Last 6 Months</option>
+<option>This Year</option>
+</select>
+</div>
+<div class="flex-grow flex items-end relative min-h-[200px] mt-4">
+<!-- Y Axis Lines -->
+<div class="absolute w-full top-0 h-[1px] bg-surface-container-high/50 border-dashed border-b border-outline-variant/20"></div>
+<div class="absolute w-full top-1/4 h-[1px] bg-surface-container-high/50 border-dashed border-b border-outline-variant/20"></div>
+<div class="absolute w-full top-2/4 h-[1px] bg-surface-container-high/50 border-dashed border-b border-outline-variant/20"></div>
+<div class="absolute w-full top-3/4 h-[1px] bg-surface-container-high/50 border-dashed border-b border-outline-variant/20"></div>
+<div class="absolute w-full bottom-0 h-[1px] bg-outline-variant/30"></div>
+<!-- Bars -->
+<div class="w-full h-full flex justify-between items-end px-4 z-10 gap-3">
+<div class="w-1/6 flex flex-col items-center gap-3 group">
+<div class="w-full max-w-[48px] bg-surface-container-high/60 rounded-t-md h-[40%] group-hover:bg-primary-container/60 transition-colors relative cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-label-md text-[11px] px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">45 completed</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Jan</span>
+</div>
+<div class="w-1/6 flex flex-col items-center gap-3 group">
+<div class="w-full max-w-[48px] bg-surface-container-high/60 rounded-t-md h-[55%] group-hover:bg-primary-container/60 transition-colors relative cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-label-md text-[11px] px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">62 completed</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Feb</span>
+</div>
+<div class="w-1/6 flex flex-col items-center gap-3 group">
+<div class="w-full max-w-[48px] bg-surface-container-high/60 rounded-t-md h-[35%] group-hover:bg-primary-container/60 transition-colors relative cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-label-md text-[11px] px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">38 completed</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Mar</span>
+</div>
+<div class="w-1/6 flex flex-col items-center gap-3 group">
+<div class="w-full max-w-[48px] bg-surface-container-high/60 rounded-t-md h-[70%] group-hover:bg-primary-container/60 transition-colors relative cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-label-md text-[11px] px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">78 completed</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Apr</span>
+</div>
+<div class="w-1/6 flex flex-col items-center gap-3 group">
+<div class="w-full max-w-[48px] bg-primary rounded-t-md h-[85%] relative cursor-pointer data-shadow">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-label-md text-[11px] px-2.5 py-1.5 rounded-md whitespace-nowrap shadow-md">92 completed</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">May</span>
+</div>
+<div class="w-1/6 flex flex-col items-center gap-3 group">
+<div class="w-full max-w-[48px] bg-surface-container-high/60 rounded-t-md h-[60%] group-hover:bg-primary-container/60 transition-colors relative cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-label-md text-[11px] px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">68 completed</div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Jun</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Breakdown -->
+<section class="bg-surface-container-lowest rounded-2xl p-6 soft-shadow border border-surface-container/50">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Category Breakdown</h3>
+<div class="space-y-6">
+<!-- Category 1 -->
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-baseline mb-2">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Health &amp; Fitness</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">420 logs</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">work</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-baseline mb-2">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Deep Work</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">315 logs</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 55%"></div>
+</div>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary">self_improvement</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-baseline mb-2">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Mindfulness</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">205 logs</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 35%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] border-t border-surface-container md:hidden">
+<ul class="flex justify-around items-center w-full px-4 pb-6 pt-3">
+<li>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high dark:hover:bg-surface-variant active:scale-90 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-label-md text-label-md mt-1">Today</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-2 hover:bg-primary hover:text-on-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-md text-label-md mt-1">Stats</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high dark:hover:bg-surface-variant active:scale-90 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md mt-1">Social</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high dark:hover:bg-surface-variant active:scale-90 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">show_chart</span>
+<span class="font-label-md text-label-md mt-1">Trends</span>
+</a>
+</li>
+</ul>
+</nav>
+</body></html>

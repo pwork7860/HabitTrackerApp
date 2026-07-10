@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitForge - Explore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4ff",
+                        "inverse-surface": "#213145",
+                        "secondary-container": "#2170e4",
+                        "secondary": "#0058be",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "inverse-primary": "#4edea3",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#855300",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3c4a42",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary": "#006c49",
+                        "on-surface": "#0b1c30",
+                        "outline-variant": "#bbcabf",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-container": "#523200",
+                        "background": "#f8f9ff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddb8",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#002113",
+                        "surface-container-high": "#dce9ff",
+                        "surface": "#f8f9ff",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#10b981",
+                        "secondary-fixed": "#d8e2ff",
+                        "outline": "#6c7a71",
+                        "on-primary-fixed-variant": "#005236",
+                        "surface-tint": "#006c49",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary-container": "#e29100",
+                        "on-primary-container": "#00422b",
+                        "on-secondary-fixed": "#001a42",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-padding-mobile": "16px",
+                        "container-padding-desktop": "32px",
+                        "base": "8px",
+                        "section-gap": "32px",
+                        "card-gap": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Lexend"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Lexend"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Lexend"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[88px] md:pb-0 font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-40 w-full flex justify-between items-center px-container-padding-mobile h-16 md:px-container-padding-desktop">
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden ring-2 ring-transparent group-hover:ring-primary-container transition-all">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A small circular profile picture of a young professional woman smiling warmly in a bright, modern office setting with natural light and soft focus background. The aesthetic is clean and contemporary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtJ6DNj3rGxymULjn8jhon-tZy25I4ePoq8K-93YXQ4Zhpjrs1JsXn_PlVW5Q3yElmPgwEzNlFlnG7KX5SZXNWjOFYOqO10INL5rTEg80LUbjkDQOkjlqA98ABTdUn_YGJYSaB1JjmJVJijcORYlhUtm3lam1nhzFlUH-rtHr-ZX6KUQdj34QWcuaofDFzeA-0eQ_6ElYXBDerW-OoLFNTBUm0OnmLyw0XrbiTKMmlA4rWkQzhGU2IT2pdF_q5bCOq_dlPZzbt834E"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight group-hover:text-primary-fixed-dim transition-colors">HabitForge</h1>
+</div>
+<!-- Desktop Nav Cluster (Hidden on mobile) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">calendar_today</span>
+<span>Today</span>
+</a>
+<a class="text-primary font-label-md text-label-md flex flex-col items-center gap-1" href="#">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">search</span>
+<span>Explore</span>
+</div>
+</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">group</span>
+<span>Social</span>
+</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">analytics</span>
+<span>Insights</span>
+</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">shopping_bag</span>
+<span>Shop</span>
+</a>
+</nav>
+<button class="text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-full transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-section-gap w-full">
+<!-- Search & Filter Section -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg mb-6 text-on-surface">Discover New Habits</h2>
+<div class="relative w-full md:w-2/3 lg:w-1/2">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="block w-full pl-12 pr-12 py-3.5 bg-surface-container rounded-full font-body-md text-body-md text-on-surface placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all duration-200 shadow-sm" placeholder="Search habits, routines, or goals..." type="text"/>
+<button class="absolute inset-y-0 right-2 flex items-center px-3 text-primary hover:bg-surface-variant rounded-full my-1.5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<!-- Quick Filters (Chips) -->
+<div class="flex overflow-x-auto gap-3 mt-6 pb-2 no-scrollbar">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-2 shadow-sm transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                    All
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md flex items-center gap-2 transition-all active:scale-95 border border-transparent hover:border-outline-variant">
+<span class="material-symbols-outlined text-[16px]">wb_sunny</span>
+                    Morning
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md flex items-center gap-2 transition-all active:scale-95 border border-transparent hover:border-outline-variant">
+<span class="material-symbols-outlined text-[16px]">bedtime</span>
+                    Evening
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md flex items-center gap-2 transition-all active:scale-95 border border-transparent hover:border-outline-variant">
+<span class="material-symbols-outlined text-[16px]">fitness_center</span>
+                    Fitness
+                </button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md flex items-center gap-2 transition-all active:scale-95 border border-transparent hover:border-outline-variant">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+                    Focus
+                </button>
+</div>
+</section>
+<!-- Curated Collection Carousel -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Curated Collections</h3>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1" href="#">
+                    See All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar -mx-container-padding-mobile px-container-padding-mobile md:mx-0 md:px-0">
+<!-- Collection Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] h-[180px] rounded-2xl overflow-hidden relative group cursor-pointer shadow-sm hover:shadow-md transition-all">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist overhead view of a clean desk with a glowing pomodoro timer, a notebook, and a cup of coffee. The lighting is soft and natural, emphasizing productivity and focus in a modern aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEOrnDXhzYHNxCcUGxJGn6jSCkpotG1F3LJl6xini3BB6rJ81oe-JuBFCX1pKcw4kY9BHU_1SKSPzEZjJLzFuuXuMFN5My2gGBECXhZ9auvElMqy8ToQYbJUAI3tqkkIceng1GDj7pu8A6PcmsERZyKbwnKuxWAbGi2LRHZQaq3WNctCRUXuP9FqoLpuePONty7AIm4B_u5jpsw9qZj0_SYWKVKPP5u4ihpKu8YFESopiSu1AJTv9hMQCqg5UHcOa-wtjPJrrmYbyY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/30 to-transparent"></div>
+<div class="absolute inset-0 p-5 flex flex-col justify-between">
+<div class="self-start">
+<span class="inline-block px-2.5 py-1 rounded-md bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container font-label-md text-[10px] uppercase tracking-widest shadow-sm">Productivity</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-tertiary font-bold leading-tight mb-1">Scientifically Proven Focus Habits</h4>
+<p class="font-body-sm text-body-sm text-surface-container-high opacity-90 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">format_list_bulleted</span> 6 habits • Backed by research
+                            </p>
+</div>
+</div>
+</div>
+<!-- Collection Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] h-[180px] rounded-2xl overflow-hidden relative group cursor-pointer shadow-sm hover:shadow-md transition-all">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A serene sunrise view over a calm lake with a person meditating on a wooden dock in silhouette. Soft pastel colors of dawn, emphasizing peace and morning wellness." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsIv6cKMCyQ5qr-dDtAsXRwzQJRMGnNlW_hDcWsQQGliez2X2a2hfO2GNZO4BNv4i1b7zDq_lCa5oOiasSYe8qigyF_nCqfn_vDbxuKoTdiY713FmpVW3gBowc5AfEa_xTrwSvuZA1U_FjVnqVJoIJe1Hq6yHEoMHOn34rvk32gnvp8T-zf9DyV1x3C5GmbPLwuxFGmkWxnQ1VW0Vuj8Xj96rq1ElZtBMI2TsJ6LaAPIdqA1gNBTF2fu9bgHzx4APy9OhasPnclwdE')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/30 to-transparent"></div>
+<div class="absolute inset-0 p-5 flex flex-col justify-between">
+<div class="self-start">
+<span class="inline-block px-2.5 py-1 rounded-md bg-tertiary-container/90 backdrop-blur-sm text-on-tertiary-container font-label-md text-[10px] uppercase tracking-widest shadow-sm">Wellness</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-tertiary font-bold leading-tight mb-1">The Perfect Morning Routine</h4>
+<p class="font-body-sm text-body-sm text-surface-container-high opacity-90 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">format_list_bulleted</span> 4 habits • Start strong
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Habit Templates -->
+<section>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Popular Templates</h3>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-card-gap md:gap-gutter">
+<!-- Large Feature Card (Spans 8 cols on desktop) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant hover:shadow-md transition-all group flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden">
+<div class="absolute top-0 right-0 w-40 h-40 bg-primary-container/10 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center shrink-0 shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[32px] text-primary">local_drink</span>
+</div>
+<div class="flex-1 z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-md text-label-md text-primary tracking-wider uppercase">Health &amp; Fitness</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-[11px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 12k adopting
+                            </span>
+</div>
+<h4 class="font-headline-md text-[22px] text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">Drink 2L of Water</h4>
+<p class="font-body-sm text-[15px] text-on-surface-variant mb-4 max-w-lg">Stay hydrated to improve focus, digestion, and energy levels throughout your day.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-surface-container rounded-md font-label-md text-[11px] text-on-surface border border-surface-variant">Daily</span>
+<span class="px-2.5 py-1 bg-surface-container rounded-md font-label-md text-[11px] text-on-surface border border-surface-variant">Quantity Tracker</span>
+</div>
+</div>
+<button class="w-full md:w-auto mt-4 md:mt-0 px-6 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-xl shadow-sm hover:bg-surface-tint active:scale-95 transition-all flex items-center justify-center gap-2 z-10">
+<span class="material-symbols-outlined text-[20px]">add</span> Add Habit
+                    </button>
+</div>
+<!-- Standard Card (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant hover:shadow-md transition-all flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/5 rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="z-10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[24px] text-tertiary">menu_book</span>
+</div>
+<span class="px-2.5 py-1 bg-surface-container text-on-surface font-label-md text-[11px] rounded-md border border-surface-variant">Focus</span>
+</div>
+<h4 class="font-headline-md text-[18px] leading-tight text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">Read 10 Pages</h4>
+<p class="font-body-sm text-[14px] leading-relaxed text-on-surface-variant line-clamp-2">Build a consistent reading habit to continuously learn and reduce screen time.</p>
+</div>
+<div class="mt-6 flex items-center justify-between z-10">
+<span class="font-label-md text-[12px] text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 15 mins/day</span>
+<button class="w-10 h-10 rounded-full bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+<!-- Standard Card (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant hover:shadow-md transition-all flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="z-10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[24px] text-primary">directions_run</span>
+</div>
+<span class="px-2.5 py-1 bg-surface-container text-on-surface font-label-md text-[11px] rounded-md border border-surface-variant">Fitness</span>
+</div>
+<h4 class="font-headline-md text-[18px] leading-tight text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">Morning Stretch</h4>
+<p class="font-body-sm text-[14px] leading-relaxed text-on-surface-variant line-clamp-2">A quick 5-minute mobility routine to wake up your body and prevent stiffness.</p>
+</div>
+<div class="mt-6 flex items-center justify-between z-10">
+<span class="font-label-md text-[12px] text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 5 mins/day</span>
+<button class="w-10 h-10 rounded-full bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+<!-- Standard Card (Spans 4 cols on desktop) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant hover:shadow-md transition-all flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-inverse-surface/5 rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="z-10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center shadow-sm border border-surface-variant/50">
+<span class="material-symbols-outlined text-[24px] text-inverse-surface">self_improvement</span>
+</div>
+<span class="px-2.5 py-1 bg-surface-container text-on-surface font-label-md text-[11px] rounded-md border border-surface-variant">Mindfulness</span>
+</div>
+<h4 class="font-headline-md text-[18px] leading-tight text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">Daily Gratitude</h4>
+<p class="font-body-sm text-[14px] leading-relaxed text-on-surface-variant line-clamp-2">Write down 3 things you are grateful for to foster a positive mindset.</p>
+</div>
+<div class="mt-6 flex items-center justify-between z-10">
+<span class="font-label-md text-[12px] text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 3 mins/day</span>
+<button class="w-10 h-10 rounded-full bg-surface-container hover:bg-primary hover:text-on-primary text-primary transition-colors flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+<!-- Interactive Generation Banner (Spans 4 cols) -->
+<div class="md:col-span-4 bg-gradient-to-br from-primary to-surface-tint rounded-2xl p-6 shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+<span class="material-symbols-outlined text-[40px] text-on-primary mb-4 animate-pulse">auto_awesome</span>
+<h4 class="font-headline-md text-headline-md text-on-primary font-bold mb-2 relative z-10">AI Habit Builder</h4>
+<p class="font-body-sm text-[15px] text-on-primary/90 mb-6 relative z-10">Tell us your goal, we'll create the habit plan.</p>
+<button class="px-6 py-2.5 bg-surface text-primary font-label-md text-label-md rounded-xl shadow-sm hover:shadow-md hover:scale-105 transition-all relative z-10">
+                        Try it out
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface/90 dark:bg-surface/80 backdrop-blur-xl shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe border-t border-surface-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 w-16 h-12" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_today</span>
+<span class="font-label-md text-[10px] mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-[10px] mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 w-16 h-12" href="#">
+<span class="material-symbols-outlined text-[24px]">group</span>
+<span class="font-label-md text-[10px] mt-1">Social</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 w-16 h-12" href="#">
+<span class="material-symbols-outlined text-[24px]">analytics</span>
+<span class="font-label-md text-[10px] mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200 w-16 h-12" href="#">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="font-label-md text-[10px] mt-1">Shop</span>
+</a>
+</nav>
+</body></html>

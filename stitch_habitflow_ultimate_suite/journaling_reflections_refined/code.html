@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitForge - Journal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#eff4ff",
+                      "inverse-surface": "#213145",
+                      "secondary-container": "#2170e4",
+                      "secondary": "#0058be",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "inverse-primary": "#4edea3",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#855300",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#3c4a42",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "primary": "#006c49",
+                      "on-surface": "#0b1c30",
+                      "outline-variant": "#bbcabf",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#523200",
+                      "background": "#f8f9ff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#4edea3",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#d3e4fe",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffddb8",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#002113",
+                      "surface-container-high": "#dce9ff",
+                      "surface": "#f8f9ff",
+                      "surface-container": "#e5eeff",
+                      "primary-container": "#10b981",
+                      "secondary-fixed": "#d8e2ff",
+                      "outline": "#6c7a71",
+                      "on-primary-fixed-variant": "#005236",
+                      "surface-tint": "#006c49",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-error": "#ffffff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "tertiary-container": "#e29100",
+                      "on-primary-container": "#00422b",
+                      "on-secondary-fixed": "#001a42",
+                      "primary-fixed": "#6ffbbe",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary-fixed": "#2a1700",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "container-padding-mobile": "16px",
+                      "container-padding-desktop": "32px",
+                      "base": "8px",
+                      "section-gap": "32px",
+                      "card-gap": "12px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Lexend"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Lexend"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Lexend"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d3e4fe; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #adc6ff; 
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-surface-container-lowest to-surface text-on-surface font-body-md min-h-screen flex flex-col pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop h-16">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant flex items-center justify-center">
+<img class="object-cover w-full h-full" data-alt="A macro shot of a vibrant green leaf with dewdrops, reflecting a calm and serene morning light. The image represents growth and personal renewal, fitting a minimalist and uplifting profile avatar aesthetic in a modern UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_0Bv-_7tPFBTalvSY7Y08c0xOp1BSlKh4M0N0Gc-2L4tw0XSbrv8gSersMXtVrFHng_-S8F1nGBf_DIdn0jJ2o8emqdsGburIT9pcKc2KEO67JGIsTBzoJzNewrAm2TOmMv29UM_RcLzGYwU3GHDlgwS7YMZ1UE1fRGQ2Ua-kL5SR8i2bsmjG9aEvhxn_QsMXM9NQl8jZXdA5HJ7q24y3uk5F__Z-4kI0eoRC_NA1IbT64zJVcJSSVsxeybmUIgnq3zrbvIvRw6M4"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">HabitForge</h1>
+</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-transform active:scale-95 duration-200 px-3 py-2 rounded-full flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">calendar_today</span>
+                    Today
+                </a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-transform active:scale-95 duration-200 px-3 py-2 rounded-full flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+                    Explore
+                </a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-transform active:scale-95 duration-200 px-3 py-2 rounded-full flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">group</span>
+                    Social
+                </a>
+<a class="font-label-md text-label-md text-primary bg-primary-container/20 transition-transform active:scale-95 duration-200 px-3 py-2 rounded-full flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: 'FILL' 1;">book</span>
+                    Journal
+                </a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant/50 transition-transform active:scale-95 duration-200 px-3 py-2 rounded-full flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">analytics</span>
+                    Insights
+                </a>
+</nav>
+<button class="text-on-surface-variant hover:bg-surface-variant/50 transition-transform active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-section-gap">
+<!-- Page Header -->
+<div class="mb-section-gap">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Daily Journal</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Reflect on your progress and capture your thoughts.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Entry Creation (8 cols on desktop) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- New Entry Card -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0px_8px_24px_rgba(0,0,0,0.03)] border border-outline-variant/20 p-6 md:p-8">
+<!-- Date & Mood -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">October 24, 2023</span>
+</div>
+<div class="flex flex-col sm:items-end gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">How are you feeling?</span>
+<div class="flex gap-2 bg-surface rounded-full p-1 border border-outline-variant/30 shadow-sm">
+<button class="w-10 h-10 rounded-full text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">sentiment_very_dissatisfied</span>
+</button>
+<button class="w-10 h-10 rounded-full text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">sentiment_neutral</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary shadow-md transition-all flex items-center justify-center ring-4 ring-primary/20 scale-105">
+<span class="material-symbols-outlined text-2xl">sentiment_satisfied</span>
+</button>
+<button class="w-10 h-10 rounded-full text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">sentiment_very_satisfied</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Reflection Prompt -->
+<div class="bg-gradient-to-r from-surface-container-low to-surface-container-lowest rounded-xl p-5 mb-6 border border-outline-variant/20 flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary mt-0.5" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<div>
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-1.5">Reflection of the Day</h3>
+<p class="font-body-md text-body-md text-on-surface font-medium">What was your biggest win today, no matter how small?</p>
+</div>
+</div>
+<!-- Text Area -->
+<div class="mb-8">
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant/40 focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl p-5 font-body-lg text-body-lg text-on-surface placeholder:text-on-surface-variant/40 min-h-[240px] resize-y transition-all shadow-[inset_0px_2px_4px_rgba(0,0,0,0.01)] leading-relaxed" placeholder="Start typing your reflection here..."></textarea>
+</div>
+<!-- Tags & Action -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+<div class="flex flex-wrap items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-1">sell</span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-outline-variant/30">
+                                Morning Routine
+                            </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-outline-variant/30">
+                                Deep Work
+                            </span>
+<button class="inline-flex items-center px-3 py-1.5 rounded-full border border-dashed border-outline-variant text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md gap-1">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span> Add Tag
+                            </button>
+</div>
+<button class="bg-primary hover:bg-surface-tint text-on-primary font-label-md text-label-md px-8 py-3.5 rounded-full shadow-[0px_4px_12px_rgba(0,108,73,0.2)] hover:shadow-[0px_6px_16px_rgba(0,108,73,0.3)] transition-all active:scale-95 active:translate-y-0.5 flex items-center gap-2 tracking-wide">
+                            Save Entry
+                            <span class="material-symbols-outlined" style="font-size: 18px; font-variation-settings: 'wght' 600;">check</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Recent Entries (4 cols on desktop) -->
+<div class="lg:col-span-4 space-y-6">
+<h3 class="font-headline-md text-headline-md text-on-surface font-medium flex items-center justify-between">
+                    Recent Entries
+                    <button class="text-secondary font-label-md text-label-md hover:underline tracking-wide">View All</button>
+</h3>
+<div class="relative border-l-2 border-surface-variant pl-6 space-y-8 ml-3 mt-4">
+<!-- Entry 1 -->
+<div class="relative">
+<div class="absolute -left-[33px] top-1.5 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Yesterday</span>
+<span class="material-symbols-outlined text-secondary text-xl">sentiment_very_satisfied</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_12px_rgba(0,0,0,0.03)] p-5 border border-outline-variant/20 hover:shadow-md transition-all cursor-pointer group">
+<h4 class="font-body-md text-body-md font-medium text-on-surface mb-2 line-clamp-1 group-hover:text-primary transition-colors">Crushed the morning run!</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">Woke up early and finally managed to run the full 5k without stopping. The air was crisp and it set a great tone for the day...</p>
+<div class="flex gap-2">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-semibold bg-surface-container text-on-surface-variant border border-outline-variant/20 uppercase tracking-wider">Fitness</span>
+</div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative">
+<div class="absolute -left-[33px] top-1.5 w-3.5 h-3.5 rounded-full bg-outline-variant ring-4 ring-surface-container-lowest"></div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Oct 22, 2023</span>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">sentiment_neutral</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_12px_rgba(0,0,0,0.03)] p-5 border border-outline-variant/20 hover:shadow-md transition-all cursor-pointer group">
+<h4 class="font-body-md text-body-md font-medium text-on-surface mb-2 line-clamp-1 group-hover:text-primary transition-colors">Missed meditation, but that's okay.</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">Things got really hectic at work this morning and I completely skipped my meditation block. Feeling a bit scattered but trying not to beat myself up.</p>
+<div class="flex gap-2">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-semibold bg-surface-container text-on-surface-variant border border-outline-variant/20 uppercase tracking-wider">Mindfulness</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="mt-8 p-6 rounded-2xl bg-gradient-to-br from-surface-container to-surface-variant text-center border border-outline-variant/20 shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-9xl">local_fire_department</span>
+</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-3" style="font-variation-settings: 'wght' 200, 'FILL' 1;">local_fire_department</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">3 Day Streak</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">You've journaled for 3 consecutive days. Keep the momentum going!</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface/80 dark:bg-surface/80 backdrop-blur-xl shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe border-t-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16 h-14 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16 h-14 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16 h-14 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Social</span>
+</a>
+<!-- Active Tab: Intent fallback from Journal -> Insights roughly, but we'll highlight Insights as a placeholder for the closest semantic match if we strictly use the JSON labels. However, Journal is distinct. We will highlight nothing from the standard bottom nav if it's a specific sub-destination, but let's assume 'Insights' might cover reflections. Actually, "Today" is active in context of daily journaling. We will highlight "Insights" as reflections are insights into oneself. -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:bg-surface-container-high transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-200 w-16 h-14 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md mt-1 text-[10px]">Shop</span>
+</a>
+</nav>
+</body></html>

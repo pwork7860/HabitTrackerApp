@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Habit Details - Morning Meditation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "secondary": "#0058be",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary": "#855300",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface": "#f8f9ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-container": "#00422b",
+                        "outline-variant": "#bbcabf",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-fixed": "#002113",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-primary": "#4edea3",
+                        "on-secondary-fixed": "#001a42",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary-container": "#e29100",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-container": "#2170e4",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-surface": "#213145",
+                        "surface-tint": "#006c49",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "primary-container": "#10b981",
+                        "surface-container": "#e5eeff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed": "#6ffbbe",
+                        "on-surface-variant": "#3c4a42",
+                        "outline": "#6c7a71",
+                        "on-tertiary-container": "#523200",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "primary": "#006c49",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-surface": "#0b1c30",
+                        "background": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "12px",
+                        "container-padding-mobile": "16px",
+                        "section-gap": "32px",
+                        "container-padding-desktop": "32px",
+                        "gutter": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Lexend"],
+                        "headline-lg": ["Lexend"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .heatmap-cell {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            background-color: #eff4ff;
+            border: 1px solid #bbcabf;
+            transition: all 0.2s ease;
+        }
+        .heatmap-cell.level-1 { background-color: #6ffbbe; border-color: #6ffbbe; }
+        .heatmap-cell.level-2 { background-color: #4edea3; border-color: #4edea3; }
+        .heatmap-cell.level-3 { background-color: #10b981; border-color: #10b981; }
+        .heatmap-cell.level-4 { background-color: #006c49; border-color: #006c49; }
+        
+        .heatmap-cell:hover {
+            transform: scale(1.2);
+            z-index: 10;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<!-- Top Navigation (Contextual departure, hiding bottom nav) -->
+<header class="w-full sticky top-0 z-50 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop py-4 border-b border-outline-variant/20">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-on-background">Habit Details</h1>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-section-gap pb-24">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-section-gap">
+<div class="flex items-center gap-5">
+<div class="w-16 h-16 rounded-lg bg-primary-container/10 border border-primary-container/20 flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-4xl fill" data-icon="self_improvement">self_improvement</span>
+</div>
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-1">Morning Meditation</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-primary"></span>
+Daily • Health &amp; Mindfulness
+</p>
+</div>
+</div>
+<div class="flex items-center gap-8 bg-surface-container-lowest p-5 rounded-lg shadow-sm border border-outline-variant/30">
+<div class="flex flex-col items-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Current Streak</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">14 Days</span>
+</div>
+<div class="w-px h-12 bg-outline-variant/30"></div>
+<div class="flex flex-col items-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Longest Streak</span>
+<span class="font-headline-md text-headline-md text-on-background font-bold">32 Days</span>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Left Column: Activity & Charts -->
+<div class="md:col-span-8 flex flex-col gap-6">
+<!-- Heatmap Activity -->
+<div class="bg-surface-container-lowest rounded-lg p-6 md:p-8 shadow-sm border border-outline-variant/30">
+<h3 class="font-headline-md text-headline-md text-on-background mb-6">30-Day Activity</h3>
+<div class="flex flex-wrap gap-2">
+<!-- Simulated Heatmap generation -->
+<script>
+                            document.write(Array.from({length: 30}).map((_, i) => {
+                                const levels = ['level-0', 'level-1', 'level-2', 'level-3', 'level-4'];
+                                // Weight towards higher completion for a good streak
+                                const randomLevel = i > 15 ? levels[Math.floor(Math.random() * 3) + 2] : levels[Math.floor(Math.random() * 5)];
+                                return `<div class="heatmap-cell ${randomLevel}" title="Day ${30-i}"></div>`;
+                            }).join(''));
+                        </script>
+</div>
+<div class="flex items-center justify-end gap-2 mt-6 font-label-md text-label-md text-on-surface-variant">
+<span>Less</span>
+<div class="heatmap-cell"></div>
+<div class="heatmap-cell level-1"></div>
+<div class="heatmap-cell level-2"></div>
+<div class="heatmap-cell level-3"></div>
+<div class="heatmap-cell level-4"></div>
+<span>More</span>
+</div>
+</div>
+<!-- Consistency Chart Placeholder -->
+<div class="bg-surface-container-lowest rounded-lg p-6 md:p-8 shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-background">Consistency Trend</h3>
+<select class="bg-surface-container-low border border-outline-variant/30 rounded-lg text-body-sm py-1.5 pl-3 pr-8 focus:ring-primary focus:border-primary text-on-background">
+<option>Past 30 Days</option>
+<option>Past 3 Months</option>
+</select>
+</div>
+<!-- Minimalist SVG Chart representation -->
+<div class="w-full h-48 flex items-end justify-between gap-1.5 mt-4 relative">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-6">
+<div class="w-full border-t border-outline-variant/20"></div>
+<div class="w-full border-t border-outline-variant/20"></div>
+<div class="w-full border-t border-outline-variant/20"></div>
+<div class="w-full border-t border-outline-variant/20"></div>
+</div>
+<script>
+                            document.write(Array.from({length: 20}).map((_, i) => {
+                                const height = Math.floor(Math.random() * 70) + 20;
+                                // Smooth trend upwards
+                                const trendHeight = i * 2 + height;
+                                return `
+                                <div class="w-full max-w-[24px] flex flex-col justify-end h-full z-10 group relative">
+                                    <div class="w-full bg-primary-fixed-dim rounded-t-sm transition-all duration-300 group-hover:bg-primary" style="height: ${Math.min(trendHeight, 100)}%;"></div>
+                                </div>`;
+                            }).join(''));
+                        </script>
+</div>
+</div>
+</div>
+<!-- Right Column: Settings & Notes -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<!-- Quick Settings -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm border border-outline-variant/30">
+<h3 class="font-headline-md text-headline-md text-on-background mb-6">Settings</h3>
+<div class="space-y-5">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-md text-body-md font-medium text-on-background mb-0.5">Reminders</p>
+<p class="font-label-md text-label-md text-on-surface-variant">7:00 AM, Daily</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="w-full border-t border-outline-variant/20"></div>
+<div class="flex justify-between items-center cursor-pointer group">
+<div>
+<p class="font-body-md text-body-md font-medium text-on-background mb-0.5">Frequency</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Every Day</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="w-full border-t border-outline-variant/20"></div>
+<div class="flex justify-between items-center cursor-pointer group">
+<div>
+<p class="font-body-md text-body-md font-medium text-on-background mb-0.5">Goal</p>
+<p class="font-label-md text-label-md text-on-surface-variant">15 Minutes</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Notes Section -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-background">Notes</h3>
+<button class="text-primary font-label-md text-label-md uppercase tracking-wider hover:opacity-80 transition-opacity">Edit</button>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/20 rounded-lg p-5 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<p>Focus on deep breathing techniques learned last week. Try to keep the environment quiet and use the noise-cancelling headphones if the street is busy.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rewards &amp; Store - HabitForge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#eff4ff",
+                      "inverse-surface": "#213145",
+                      "secondary-container": "#2170e4",
+                      "secondary": "#0058be",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "inverse-primary": "#4edea3",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#855300",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#3c4a42",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "primary": "#006c49",
+                      "on-surface": "#0b1c30",
+                      "outline-variant": "#bbcabf",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#523200",
+                      "background": "#f8f9ff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#4edea3",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#d3e4fe",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffddb8",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#002113",
+                      "surface-container-high": "#dce9ff",
+                      "surface": "#f8f9ff",
+                      "surface-container": "#e5eeff",
+                      "primary-container": "#10b981",
+                      "secondary-fixed": "#d8e2ff",
+                      "outline": "#6c7a71",
+                      "on-primary-fixed-variant": "#005236",
+                      "surface-tint": "#006c49",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-error": "#ffffff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "tertiary-container": "#e29100",
+                      "on-primary-container": "#00422b",
+                      "on-secondary-fixed": "#001a42",
+                      "primary-fixed": "#6ffbbe",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary-fixed": "#2a1700",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1rem",
+                      "3xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "container-padding-mobile": "16px",
+                      "container-padding-desktop": "32px",
+                      "base": "8px",
+                      "section-gap": "48px",
+                      "card-gap": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Lexend"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Lexend"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Lexend"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[90px] md:pb-0">
+<!-- Desktop Sidebar Placeholder - Hidden on Mobile -->
+<div class="hidden md:flex fixed left-0 top-0 h-full w-64 bg-surface flex-col border-r border-outline-variant/30 p-4 shadow-sm z-40">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-8 px-4">HabitForge</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-md text-body-md">Today</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-body-md text-body-md">Explore</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Social</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-on-primary-container" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-body-md text-body-md font-medium">Shop</span>
+</a>
+</nav>
+</div>
+<!-- Main Content Area -->
+<main class="md:ml-64 w-full flex flex-col">
+<!-- TopAppBar (Mobile) / Header (Desktop) -->
+<header class="bg-surface shadow-sm docked full-width top-0 z-30 transition-transform duration-200 sticky">
+<div class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop h-16">
+<!-- Mobile Logo -->
+<div class="font-headline-md text-headline-md font-bold text-primary md:hidden">HabitForge</div>
+<!-- Desktop Title -->
+<div class="hidden md:block font-headline-md text-headline-md text-on-surface">Rewards Store</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-1.5 rounded-full border border-outline-variant/30">
+<span class="material-symbols-outlined fill text-tertiary-container" style="font-size: 20px;">stars</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">1,250 FP</span>
+</div>
+<button class="w-8 h-8 rounded-full overflow-hidden hover:opacity-80 transition-opacity border border-outline-variant/30">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A small circular profile picture of a young professional smiling slightly against a soft, bright white background. The image is clean, well-lit, and suitable for a modern app avatar, featuring natural lighting and subtle shadows. Colors are natural with a hint of warm undertones, fitting a clean UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMFIDHs7DkpIXf6B83XbOfJr0Sz7ETa93pblg25zZ9hSqDTCU6EyQIccybQQSyieVraTqyLwUBlncQNDcVAmAXyBye4Wa3tNnWsF-ch0dAAWAngYv9_LzoT1HYP5I_EyUf3ZfBFLB9EcaLd2u1iBJMtPiUiv5bOrkwXgLb-14I3_vLh9vtiaH3UxsJZhnfPm7X-m6oW0o7P_XDmBnytsjWpJqsqHZX7lrOhBYxH-y8iRX_yhNx5mqHy_rUD8aOd6U1E6OV1eXVExi5"/>
+</button>
+</div>
+</div>
+</header>
+<div class="px-container-padding-mobile md:px-container-padding-desktop py-8 max-w-7xl mx-auto w-full flex flex-col gap-section-gap">
+<!-- Status Dashboard / Points Balance -->
+<section class="bg-surface-container-lowest rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm border border-outline-variant/30">
+<div class="flex flex-col gap-3 flex-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full w-fit">
+<span class="material-symbols-outlined fill text-tertiary-container" style="font-size: 16px;">verified</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status: Gold Tier</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-on-surface">Your Forge Points</h1>
+<p class="font-body-md text-on-surface-variant max-w-md">Consistently building habits earns you points. Use them to unlock exclusive themes, badges, and companions.</p>
+<a class="mt-2 font-label-md text-label-md text-secondary hover:text-secondary-container transition-colors font-semibold flex items-center gap-1 w-fit" href="#">
+    How to earn more <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-primary-container/20 to-surface-variant rounded-2xl p-8 border border-outline-variant/20 min-w-[240px] shadow-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-2 font-semibold">Available Balance</span>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined fill text-tertiary-container drop-shadow-sm" style="font-size: 40px;">stars</span>
+<span class="text-5xl font-headline-lg font-bold text-on-surface tracking-tight">1,250</span>
+</div>
+</div>
+</section>
+<!-- Rewards Categories -->
+<!-- Category 1: Digital Goods -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-lg-mobile text-on-surface font-semibold">Digital Goods</h2>
+<a class="font-label-md text-label-md text-secondary hover:text-secondary-container transition-colors flex items-center gap-1" href="#">View All Collection <span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-card-gap">
+<!-- Unlocked Item 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-5 border border-outline-variant/30 hover:shadow-md transition-shadow group relative">
+<div class="absolute top-4 right-4 bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-1 rounded-md border border-outline-variant/20 z-20">
+<span class="font-label-md text-xs text-on-surface-variant font-medium">Theme</span>
+</div>
+<div class="w-full h-40 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+<span class="material-symbols-outlined fill text-primary-fixed" style="font-size: 56px; position: relative; z-index: 10; opacity: 0.9;">dark_mode</span>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<h3 class="font-headline-md text-on-surface font-semibold">Dark Mode Theme</h3>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">Unlock the sleek, battery-saving dark theme for your entire dashboard experience.</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-5 border-t border-outline-variant/20">
+<div class="flex flex-col">
+<span class="font-label-md text-xs text-on-surface-variant uppercase mb-0.5">Cost</span>
+<span class="font-label-md text-on-surface font-bold flex items-center gap-1 text-sm"><span class="material-symbols-outlined fill text-tertiary-container" style="font-size: 18px;">stars</span> 500 FP</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-sm px-6 py-2.5 rounded-xl hover:bg-primary/90 transition-colors active:scale-95 shadow-sm font-semibold">Redeem</button>
+</div>
+</div>
+<!-- Unlocked Item 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-5 border border-outline-variant/30 hover:shadow-md transition-shadow group relative">
+<div class="absolute top-4 right-4 bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-1 rounded-md border border-outline-variant/20 z-20">
+<span class="font-label-md text-xs text-on-surface-variant font-medium">Badge</span>
+</div>
+<div class="w-full h-40 rounded-xl bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+<span class="material-symbols-outlined fill text-tertiary-container" style="font-size: 64px; position: relative; z-index: 10; filter: drop-shadow(0 4px 6px rgba(226, 145, 0, 0.2));">local_fire_department</span>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<h3 class="font-headline-md text-on-surface font-semibold">"Early Bird" Profile Badge</h3>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">Show off your morning routine dedication with this exclusive profile flair.</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-5 border-t border-outline-variant/20">
+<div class="flex flex-col">
+<span class="font-label-md text-xs text-on-surface-variant uppercase mb-0.5">Cost</span>
+<span class="font-label-md text-on-surface font-bold flex items-center gap-1 text-sm"><span class="material-symbols-outlined fill text-tertiary-container" style="font-size: 18px;">stars</span> 300 FP</span>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-sm px-6 py-2.5 rounded-xl hover:bg-primary/90 transition-colors active:scale-95 shadow-sm font-semibold">Redeem</button>
+</div>
+</div>
+<!-- Locked Item -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-5 border border-outline-variant/30 relative overflow-hidden">
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-[1px] z-30 pointer-events-none rounded-2xl"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 bg-surface px-4 py-2 rounded-lg shadow-sm border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">lock</span>
+<span class="font-label-md text-on-surface font-semibold">Level 10 Required</span>
+</div>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-1 rounded-md border border-outline-variant/20 z-20">
+<span class="font-label-md text-xs text-outline font-medium">Companion</span>
+</div>
+<div class="w-full h-40 rounded-xl bg-surface-variant/30 flex items-center justify-center relative overflow-hidden grayscale opacity-70">
+<span class="material-symbols-outlined fill text-outline" style="font-size: 56px; position: relative; z-index: 10;">pets</span>
+</div>
+<div class="flex flex-col gap-2 flex-grow opacity-60">
+<h3 class="font-headline-md text-on-surface font-semibold">Virtual Pet Companion</h3>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">A little buddy to cheer you on daily. Appears on your main dashboard.</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-5 border-t border-outline-variant/20 opacity-60">
+<div class="flex flex-col">
+<span class="font-label-md text-xs text-on-surface-variant uppercase mb-0.5">Cost</span>
+<span class="font-label-md text-outline font-bold flex items-center gap-1 text-sm"><span class="material-symbols-outlined fill" style="font-size: 18px;">stars</span> 2,500 FP</span>
+</div>
+<button class="bg-surface-container-highest text-on-surface-variant font-label-md text-sm px-6 py-2.5 rounded-xl cursor-not-allowed font-semibold">Locked</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed full-width bottom-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] w-full left-0 flex justify-around items-center px-4 py-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-14 hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-14 hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-14 hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md mt-1">Social</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-16 h-14 hover:bg-surface-container-high transition-all active:scale-90 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all active:scale-90 duration-200 h-14 min-w-[64px]" href="#">
+<span class="material-symbols-outlined fill">shopping_bag</span>
+<span class="font-label-md text-label-md mt-1">Shop</span>
+</a>
+</nav>
+</body></html>
