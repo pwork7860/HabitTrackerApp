@@ -24,10 +24,8 @@
     },
     "production": {
       "android": {
-        "buildType": "app-bundle"
-      },
-      "ios": {
-        "enterpriseProvisioning": "universal"
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
       }
     }
   }
