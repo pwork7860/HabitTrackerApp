@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useQuery } from '@tanstack/react-query';
 import { theme } from '../../../theme';
 import { TopAppBar } from '../../../components/TopAppBar';
 import { HabitCard } from '../../../components/HabitCard';
 import { CustomButton } from '../../../components/CustomButton';
 import { RootStackParamList } from '../../../navigation/types';
+import { fetchHabits } from '../../habits/api/habitsApi';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -24,44 +27,26 @@ const DAYS = [
 
 export const DailyDashboardScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const [habits, setHabits] = useState([
-    {
-      id: '1',
-      title: 'Morning Meditation',
-      subtitle: '10 minutes',
-      streak: 12,
-      completed: true,
-    },
-    {
-      id: '2',
-      title: 'Drink 2L Water',
-      subtitle: '0.5L / 2L',
-      streak: 4,
-      category: 'Health',
-      categoryColor: theme.colors.secondary,
-      completed: false,
-    },
-    {
-      id: '3',
-      title: 'Read 20 Pages',
-      subtitle: 'Daily',
-      streak: 1,
-      category: 'Learning',
-      categoryColor: theme.colors.tertiary,
-      completed: false,
-    },
-    {
-      id: '4',
-      title: 'Stretch',
-      subtitle: 'Post-workout',
-      streak: 8,
-      completed: true,
-    }
-  ]);
+  // Local state to track which habits are marked done (keyed by habit id)
+  const [completedIds, setCompletedIds] = useState<Record<string, boolean>>({});
+
+  const { data: habits = [], isLoading, isError, refetch } = useQuery({
+    queryKey: ['habits'],
+    queryFn: fetchHabits,
+  });
+
+  // Refetch every time the screen comes into focus (e.g. after creating a habit)
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   const toggleHabit = (id: string) => {
-    setHabits(habits.map(h => h.id === id ? { ...h, completed: !h.completed } : h));
+    setCompletedIds(prev => ({ ...prev, [id]: !prev[id] }));
   };
+
+  const completedCount = habits.filter(h => completedIds[h.id]).length;
 
   return (
     <View style={styles.container}>
@@ -114,32 +99,50 @@ export const DailyDashboardScreen = () => {
             <Text style={styles.sectionTitle}>Today's Habits</Text>
             <View style={styles.completedBadge}>
               <Text style={styles.completedBadgeText}>
-                {habits.filter(h => h.completed).length}/{habits.length} Completed
+                {completedCount}/{habits.length} Completed
               </Text>
             </View>
           </View>
-          
-          <View style={styles.habitsContainer}>
-            {habits.map((habit) => (
-              <HabitCard 
-                key={habit.id}
-                title={habit.title}
-                subtitle={habit.subtitle}
-                streak={habit.streak}
-                category={habit.category}
-                categoryColor={habit.categoryColor}
-                completed={habit.completed}
-                onToggle={() => toggleHabit(habit.id)}
-                onPress={() => navigation.navigate('HabitDetails', { habitId: habit.id })}
-              />
-            ))}
-          </View>
 
-          <CustomButton 
-            title="Add New Habit" 
-            icon="add" 
-            variant="dashed" 
-            onPress={() => navigation.navigate('CreateHabit')} 
+          {isLoading ? (
+            <View style={styles.centeredState}>
+              <ActivityIndicator size="large" color={theme.colors.primary} />
+              <Text style={styles.stateText}>Loading your habits…</Text>
+            </View>
+          ) : isError ? (
+            <View style={styles.centeredState}>
+              <MaterialIcons name="wifi-off" size={36} color={theme.colors.onSurfaceVariant} />
+              <Text style={styles.stateText}>Couldn't load habits.</Text>
+              <TouchableOpacity onPress={() => refetch()} style={styles.retryBtn}>
+                <Text style={styles.retryText}>Tap to retry</Text>
+              </TouchableOpacity>
+            </View>
+          ) : habits.length === 0 ? (
+            <View style={styles.centeredState}>
+              <Text style={{ fontSize: 40 }}>🌱</Text>
+              <Text style={styles.stateText}>No habits yet — add your first one!</Text>
+            </View>
+          ) : (
+            <View style={styles.habitsContainer}>
+              {habits.map((habit) => (
+                <HabitCard
+                  key={habit.id}
+                  title={habit.name}
+                  subtitle={habit.frequency}
+                  streak={0}
+                  completed={!!completedIds[habit.id]}
+                  onToggle={() => toggleHabit(habit.id)}
+                  onPress={() => navigation.navigate('HabitDetails', { habitId: habit.id })}
+                />
+              ))}
+            </View>
+          )}
+
+          <CustomButton
+            title="Add New Habit"
+            icon="add"
+            variant="dashed"
+            onPress={() => navigation.navigate('CreateHabit')}
             style={{ marginTop: 8 }}
           />
         </View>
@@ -261,5 +264,27 @@ const styles = StyleSheet.create({
   },
   habitsContainer: {
     gap: theme.spacing.cardGap,
+  },
+  centeredState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 40,
+    gap: 12,
+  },
+  stateText: {
+    ...theme.typography.bodyMd,
+    color: theme.colors.onSurfaceVariant,
+    textAlign: 'center',
+  },
+  retryBtn: {
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    backgroundColor: `${theme.colors.primary}15`,
+    borderRadius: theme.rounded.full,
+  },
+  retryText: {
+    ...theme.typography.bodyMd,
+    color: theme.colors.primary,
+    fontWeight: '600',
   },
 });
