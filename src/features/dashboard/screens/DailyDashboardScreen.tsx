@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { theme } from '../../../theme';
 import { TopAppBar } from '../../../components/TopAppBar';
 import { HabitCard } from '../../../components/HabitCard';
 import { CustomButton } from '../../../components/CustomButton';
+import { RootStackParamList } from '../../../navigation/types';
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const DAYS = [
   { day: 'Mon', date: '16', active: false, indicator: true },
@@ -18,6 +23,7 @@ const DAYS = [
 ];
 
 export const DailyDashboardScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
   const [habits, setHabits] = useState([
     {
       id: '1',
@@ -124,6 +130,7 @@ export const DailyDashboardScreen = () => {
                 categoryColor={habit.categoryColor}
                 completed={habit.completed}
                 onToggle={() => toggleHabit(habit.id)}
+                onPress={() => navigation.navigate('HabitDetails', { habitId: habit.id })}
               />
             ))}
           </View>
@@ -132,7 +139,7 @@ export const DailyDashboardScreen = () => {
             title="Add New Habit" 
             icon="add" 
             variant="dashed" 
-            onPress={() => {}} 
+            onPress={() => navigation.navigate('CreateHabit')} 
             style={{ marginTop: 8 }}
           />
         </View>

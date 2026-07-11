@@ -48,7 +48,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         />
       </Svg>
       {showText && (
-        <View style={StyleSheet.absoluteFillObject}>
+        <View style={StyleSheet.absoluteFill}>
           <View style={styles.textContainer}>
             <Text style={styles.percentageText}>{Math.round(progress)}%</Text>
             <Text style={styles.label}>COMPLETED</Text>

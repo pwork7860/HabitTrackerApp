@@ -13,49 +13,54 @@ import {
 } from 'react-native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { createHabit } from '../api/habitsApi';
+import { updateHabit } from '../api/habitsApi';
 import { RootStackParamList } from '../../../navigation/types';
 import { theme } from '../../../theme';
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'CreateHabit'>;
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'UpdateHabit'>;
+type RouteProps = RouteProp<RootStackParamList, 'UpdateHabit'>;
 
 interface Props {
   navigation: NavigationProp;
+  route: RouteProps;
 }
 
 const FREQUENCY_OPTIONS = ['Daily', 'Weekly', '3x per week', 'Weekdays', 'Weekends'];
 
-export const CreateHabitScreen: React.FC<Props> = ({ navigation }) => {
-  const [name, setName] = useState('');
-  const [frequency, setFrequency] = useState('Daily');
+export const UpdateHabitScreen: React.FC<Props> = ({ navigation, route }) => {
+  const { habitId, name: initialName, frequency: initialFrequency } = route.params;
+  const [name, setName] = useState(initialName);
+  const [frequency, setFrequency] = useState(initialFrequency);
 
   const insets = useSafeAreaInsets();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: createHabit,
+    mutationFn: () => updateHabit(habitId, { name, frequency }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['habits'] });
+      queryClient.invalidateQueries({ queryKey: ['habit', habitId] });
       navigation.goBack();
     },
     onError: (error) => {
-      Alert.alert('Error', 'Failed to create habit. Please try again.');
+      Alert.alert('Error', 'Failed to update habit. Please try again.');
       console.error(error);
     },
   });
 
   const handleSubmit = () => {
     if (!name.trim()) {
-      Alert.alert('Validation Error', 'Please enter a habit name.');
+      Alert.alert('Validation Error', 'Habit name cannot be empty.');
       return;
     }
     if (!frequency.trim()) {
       Alert.alert('Validation Error', 'Please select or enter a frequency.');
       return;
     }
-    mutation.mutate({ name: name.trim(), frequency: frequency.trim() });
+    mutation.mutate();
   };
 
   return (
@@ -69,7 +74,7 @@ export const CreateHabitScreen: React.FC<Props> = ({ navigation }) => {
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
             <MaterialIcons name="arrow-back" size={24} color={theme.colors.onBackground} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>New Habit</Text>
+          <Text style={styles.headerTitle}>Edit Habit</Text>
           <View style={{ width: 40 }} />
         </View>
 
@@ -78,15 +83,12 @@ export const CreateHabitScreen: React.FC<Props> = ({ navigation }) => {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Intro Card */}
-          <View style={styles.introCard}>
-            <View style={styles.introIconBox}>
-              <Text style={{ fontSize: 36 }}>🔥</Text>
+          {/* Icon Preview */}
+          <View style={styles.iconPreview}>
+            <View style={styles.iconBox}>
+              <MaterialIcons name="edit" size={40} color={theme.colors.primary} />
             </View>
-            <Text style={styles.introTitle}>Build a New Habit</Text>
-            <Text style={styles.introSubtitle}>
-              Small daily actions compound into extraordinary results.
-            </Text>
+            <Text style={styles.iconLabel}>Update your habit details below</Text>
           </View>
 
           {/* Name Field */}
@@ -106,12 +108,11 @@ export const CreateHabitScreen: React.FC<Props> = ({ navigation }) => {
                 value={name}
                 onChangeText={setName}
                 returnKeyType="next"
-                autoFocus
               />
             </View>
           </View>
 
-          {/* Frequency */}
+          {/* Frequency Quick Picks */}
           <View style={styles.fieldGroup}>
             <Text style={styles.label}>Frequency</Text>
             <View style={styles.frequencyChips}>
@@ -153,9 +154,9 @@ export const CreateHabitScreen: React.FC<Props> = ({ navigation }) => {
             </View>
           </View>
 
-          {/* Create Button */}
+          {/* Save Button */}
           <TouchableOpacity
-            style={[styles.createButton, mutation.isPending && styles.createButtonDisabled]}
+            style={[styles.saveButton, mutation.isPending && styles.saveButtonDisabled]}
             onPress={handleSubmit}
             disabled={mutation.isPending}
             activeOpacity={0.85}
@@ -164,19 +165,11 @@ export const CreateHabitScreen: React.FC<Props> = ({ navigation }) => {
               <ActivityIndicator color={theme.colors.onPrimary} />
             ) : (
               <>
-                <MaterialIcons name="add" size={22} color={theme.colors.onPrimary} style={{ marginRight: 8 }} />
-                <Text style={styles.createButtonText}>Create Habit</Text>
+                <MaterialIcons name="check" size={20} color={theme.colors.onPrimary} style={{ marginRight: 8 }} />
+                <Text style={styles.saveButtonText}>Save Changes</Text>
               </>
             )}
           </TouchableOpacity>
-
-          {/* Info note */}
-          <View style={styles.infoRow}>
-            <MaterialIcons name="info-outline" size={16} color={theme.colors.onSurfaceVariant} />
-            <Text style={styles.infoText}>
-              Your habit will appear in today's dashboard right away.
-            </Text>
-          </View>
         </ScrollView>
       </View>
     </KeyboardAvoidingView>
@@ -214,36 +207,24 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: theme.spacing.containerPaddingMobile,
   },
-  introCard: {
+  iconPreview: {
     alignItems: 'center',
-    backgroundColor: theme.colors.surfaceContainerLowest,
-    borderRadius: theme.rounded.xl,
-    padding: 32,
-    marginVertical: 24,
-    borderWidth: 1,
-    borderColor: 'rgba(187, 202, 191, 0.25)',
-    ...theme.elevation.level1,
+    marginVertical: 32,
   },
-  introIconBox: {
-    width: 80,
-    height: 80,
-    borderRadius: theme.rounded.full,
-    backgroundColor: `${theme.colors.primary}12`,
+  iconBox: {
+    width: 96,
+    height: 96,
+    borderRadius: theme.rounded.xl,
+    backgroundColor: `${theme.colors.primary}15`,
+    borderWidth: 2,
+    borderColor: `${theme.colors.primary}30`,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
+    marginBottom: 12,
   },
-  introTitle: {
-    ...theme.typography.headlineMd,
-    color: theme.colors.onBackground,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  introSubtitle: {
+  iconLabel: {
     ...theme.typography.bodySm,
     color: theme.colors.onSurfaceVariant,
-    textAlign: 'center',
-    lineHeight: 20,
   },
   fieldGroup: {
     marginBottom: 28,
@@ -300,36 +281,23 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontWeight: '700',
   },
-  createButton: {
+  saveButton: {
     flexDirection: 'row',
     backgroundColor: theme.colors.primary,
     padding: 18,
     borderRadius: theme.rounded.md,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 4,
-    marginBottom: 16,
+    marginTop: 12,
     ...theme.elevation.level2,
   },
-  createButtonDisabled: {
+  saveButtonDisabled: {
     opacity: 0.6,
   },
-  createButtonText: {
+  saveButtonText: {
     color: theme.colors.onPrimary,
     fontSize: 16,
     fontWeight: '700',
     letterSpacing: 0.3,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    paddingHorizontal: 4,
-  },
-  infoText: {
-    ...theme.typography.bodySm,
-    color: theme.colors.onSurfaceVariant,
-    flex: 1,
-    lineHeight: 18,
   },
 });
